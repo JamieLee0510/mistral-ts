@@ -1,18 +1,22 @@
 {
   "name": "mistral-ts",
+  "description": "The Typescript/Javascript client SDK for MistralAI",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "homepage": "https://docs.mistral.ai",
+  "repository": {
+    "url": "https://github.com/JamieLee0510/mistral-ts"
+  },
   "scripts": {
     "build": "tsup",
     "lint": "./node_modules/.bin/eslint . --ext .ts",
     "test": "node --experimental-vm-modules node_modules/.bin/jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "packageManager": "npm@10.7.0",
+  "author": "jamie_lee",
+  "license": "MIT",
   "devDependencies": {
     "@babel/preset-env": "^7.24.5",
     "@babel/preset-typescript": "^7.24.1",

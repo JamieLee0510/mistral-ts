@@ -73,8 +73,6 @@ export default class MistralClient {
 
     for (let attempts = 0; attempts < this.maxRetries; attempts++) {
       try {
-        console.log('----fetch:', fetch);
-        console.log('---isNode:', isNode);
         const response = await fetch(url, options);
         if (response.ok) {
           if (request?.stream) {
