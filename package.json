@@ -1,7 +1,7 @@
 {
   "name": "mistral-ts",
   "description": "The Typescript/Javascript client SDK for MistralAI",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
