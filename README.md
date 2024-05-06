@@ -69,3 +69,7 @@ const embeddingsBatchResponse = await client.embeddings({
 
 console.log('Embeddings Batch:', embeddingsBatchResponse.data);
 ```
+
+# ChangeLog
+
+- 20240506---init the project from offical js version
