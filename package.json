@@ -1,7 +1,7 @@
 {
   "name": "mistral-ts",
   "description": "The Typescript/Javascript client SDK for MistralAI",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "tsup",
     "lint": "./node_modules/.bin/eslint . --ext .ts",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+    "test": "npm run build && node --experimental-vm-modules node_modules/.bin/jest"
   },
   "packageManager": "npm@10.7.0",
   "author": "jamie_lee",

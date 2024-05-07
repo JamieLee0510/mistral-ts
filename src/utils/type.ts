@@ -19,7 +19,7 @@ export interface ChatCompletionRequest {
   stream?: boolean;
   safePrompt?: boolean;
   safeMode?: boolean;
-  toolChoice?: string;
+  toolChoice?: 'any' | 'auto';
   responseFormat?: string;
 }
 
@@ -33,6 +33,6 @@ export interface MistralChatCompletionRequest {
   random_seed: number;
   stream: boolean;
   safe_prompt: boolean;
-  tool_choice: string;
+  tool_choice: 'any' | 'auto';
   response_format: string;
 }
