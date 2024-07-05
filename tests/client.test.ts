@@ -1,32 +1,16 @@
-// test/client.test.ts
-import { describe, expect, test } from '@jest/globals';
+import {describe, expect} from '@jest/globals';
 
-import { MistralClient } from '../dist/index';
+import MistralClient from '../src/mistral-client';
 import {
   mockListModels,
   mockFetch,
   mockChatResponseStreamingPayload,
   mockEmbeddingRequest,
-  mockEmbeddingResponsePayload,
   mockChatResponsePayload,
   mockFetchStream,
+  mockEmbeddingResponsePayload,
 } from './test-utils';
 
-interface ChatMessage {
-  role: string;
-  content: string;
-}
-
-interface ChatParams {
-  model: string;
-  messages: ChatMessage[];
-  safeMode?: boolean;
-  safePrompt?: boolean;
-}
-
-interface ChatStreamParams extends ChatParams {
-  [key: string]: any;
-}
 
 describe('Mistral Client', () => {
   let client: MistralClient;
@@ -36,36 +20,51 @@ describe('Mistral Client', () => {
   });
 
   describe('chat()', () => {
-    it('should return a chat response object', async () => {
+    it('should return a chat response object', async() => {
       const mockResponse = mockChatResponsePayload();
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.chat({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
       });
       expect(response).toEqual(mockResponse);
     });
 
-    it('should return a chat response object if safeMode is set', async () => {
+    it('should return a chat response object if safeMode is set', async() => {
       const mockResponse = mockChatResponsePayload();
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.chat({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
         safeMode: true,
       });
       expect(response).toEqual(mockResponse);
     });
 
-    it('should return a chat response object if safePrompt is set', async () => {
+    it('should return a chat response object if safePrompt is set', async() => {
       const mockResponse = mockChatResponsePayload();
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.chat({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
         safePrompt: true,
       });
       expect(response).toEqual(mockResponse);
@@ -73,13 +72,18 @@ describe('Mistral Client', () => {
   });
 
   describe('chatStream()', () => {
-    it('should return parsed, streamed response', async () => {
+    it('should return parsed, streamed response', async() => {
       const mockResponse = mockChatResponseStreamingPayload();
-      globalThis.fetch = mockFetchStream(200, mockResponse) as any;
+      client['_fetch'] = mockFetchStream(200, mockResponse) as any;
 
       const response = await client.chatStream({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
       });
 
       const parsedResponse: any[] = [];
@@ -90,13 +94,18 @@ describe('Mistral Client', () => {
       expect(parsedResponse.length).toEqual(11);
     });
 
-    it('should return parsed, streamed response with safeMode', async () => {
+    it('should return parsed, streamed response with safeMode', async() => {
       const mockResponse = mockChatResponseStreamingPayload();
-      globalThis.fetch = mockFetchStream(200, mockResponse) as any;
+      client['_fetch'] = mockFetchStream(200, mockResponse) as any;
 
       const response = await client.chatStream({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
         safeMode: true,
       });
 
@@ -108,13 +117,18 @@ describe('Mistral Client', () => {
       expect(parsedResponse.length).toEqual(11);
     });
 
-    it('should return parsed, streamed response with safePrompt', async () => {
+    it('should return parsed, streamed response with safePrompt', async() => {
       const mockResponse = mockChatResponseStreamingPayload();
-      globalThis.fetch = mockFetchStream(200, mockResponse) as any;
+      client['_fetch'] = mockFetchStream(200, mockResponse) as any;
 
       const response = await client.chatStream({
-        model: 'mistral-small',
-        messages: [{ role: 'user', content: 'What is the best French cheese?' }],
+        model: 'mistral-small-latest',
+        messages: [
+          {
+            role: 'user',
+            content: 'What is the best French cheese?',
+          },
+        ],
         safePrompt: true,
       });
 
@@ -128,9 +142,9 @@ describe('Mistral Client', () => {
   });
 
   describe('embeddings()', () => {
-    it('should return embeddings', async () => {
+    it('should return embeddings', async() => {
       const mockResponse = mockEmbeddingResponsePayload();
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.embeddings(mockEmbeddingRequest());
       expect(response).toEqual(mockResponse);
@@ -138,9 +152,9 @@ describe('Mistral Client', () => {
   });
 
   describe('embeddings() batched', () => {
-    it('should return batched embeddings', async () => {
+    it('should return batched embeddings', async() => {
       const mockResponse = mockEmbeddingResponsePayload(10);
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.embeddings(mockEmbeddingRequest());
       expect(response).toEqual(mockResponse);
@@ -148,11 +162,25 @@ describe('Mistral Client', () => {
   });
 
   describe('listModels()', () => {
-    it('should return a list of models', async () => {
+    it('should return a list of models', async() => {
       const mockResponse = mockListModels();
-      globalThis.fetch = mockFetch(200, mockResponse) as any;
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
 
       const response = await client.listModels();
+      expect(response).toEqual(mockResponse);
+    });
+  });
+
+  describe('completion()', () => {
+    it('should return a chat response object', async() => {
+      // Mock the fetch function
+      const mockResponse = mockChatResponsePayload();
+      client['_fetch'] = mockFetch(200, mockResponse) as any;
+
+      const response = await client.completion({
+        model: 'mistral-small-latest',
+        prompt: '# this is a',
+      });
       expect(response).toEqual(mockResponse);
     });
   });

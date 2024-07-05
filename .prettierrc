@@ -1,8 +1,0 @@
-{
-  "arrowParens": "always",
-  "experimentalTernaries": true,
-  "tabWidth": 2,
-  "printWidth": 110,
-  "singleQuote": true,
-  "trailingComma": "all"
-}

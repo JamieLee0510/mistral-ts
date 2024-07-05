@@ -1,39 +1,43 @@
 {
-  "name": "mistral-ts",
-  "description": "The Typescript/Javascript client SDK for MistralAI",
-  "version": "1.0.2",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
+  "name": "@mistralai/mistralai",
+  "version": "0.5.0",
+  "description": "",
+  "author": "bam4d@mistral.ai",
+  "license": "ISC",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "homepage": "https://docs.mistral.ai",
-  "repository": {
-    "url": "https://github.com/JamieLee0510/mistral-ts"
-  },
   "scripts": {
-    "build": "tsup",
-    "lint": "./node_modules/.bin/eslint . --ext .ts",
-    "test": "npm run build && node --experimental-vm-modules node_modules/.bin/jest"
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && tsup",
+    "lint": "./node_modules/.bin/eslint .",
+    "fix": "./node_modules/.bin/eslint . --fix",
+    "test": "jest"
   },
-  "packageManager": "npm@10.7.0",
-  "author": "jamie_lee",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mistralai/client-js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
   "devDependencies": {
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-typescript": "^7.24.1",
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.12.8",
+    "@types/node": "^20.12.10",
     "@types/node-fetch": "^2.6.11",
-    "eslint": "^9.2.0",
+    "@typescript-eslint/eslint-plugin": "^7.12.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^8.57.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^29.7.0",
     "jest-mock": "^29.7.0",
-    "prettier": "^3.2.5",
+    "prettier": "2.8.8",
+    "rimraf": "^5.0.7",
     "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "node-fetch": "^2.7.0"
   }
 }
