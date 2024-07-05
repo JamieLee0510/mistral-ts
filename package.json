@@ -1,13 +1,19 @@
 {
-  "name": "@mistralai/mistralai",
-  "version": "0.5.0",
+  "name": "mistral-ts",
+  "version": "0.5.4",
   "description": "",
-  "author": "bam4d@mistral.ai",
   "license": "ISC",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "npm run clean && tsup",
@@ -17,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mistralai/client-js"
+    "url": "https://github.com/JamieLee0510/mistral-ts"
   },
   "dependencies": {
     "node-fetch": "^2.6.7"

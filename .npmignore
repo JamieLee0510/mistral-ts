@@ -1,0 +1,7 @@
+src
+*.ts
+*.config.ts
+.eslintrc.yml
+.prettierrc
+.gitignore
+example

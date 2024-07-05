@@ -4,13 +4,15 @@ This repository is the typescript version of [mistralai/client-js](https://githu
 
 You can use the Mistral JavaScript/Typescript client to interact with the Mistral AI API.
 
+Besides, the examples in this repository are still offical examples.
+
 
 
 ## Installing
 
 You can install the library in your project using:
 
-`npm install @mistralai/mistralai`
+`npm i mistral-ts`
 
 ## Usage
 
@@ -19,7 +21,16 @@ You can watch a free course on using the Mistral JavaScript client [here.](https
 ### Set up
 
 ```typescript
-import MistralClient from '@mistralai/mistralai';
+import MistralClient from 'mistralai-ts';
+
+const apiKey = process.env.MISTRAL_API_KEY || 'your_api_key';
+
+const client = new MistralClient(apiKey);
+```
+
+or in commonjs
+```typescript
+const {MistralClient} = 'mistralai-ts';
 
 const apiKey = process.env.MISTRAL_API_KEY || 'your_api_key';
 
@@ -162,7 +173,7 @@ node chat_with_streaming.js
 After the env variable setup the client will find the `MISTRAL_API_KEY` by itself
 
 ```typescript
-import MistralClient from '@mistralai/mistralai';
+import MistralClient from 'mistralai-ts';
 
 const client = new MistralClient();
 ```
